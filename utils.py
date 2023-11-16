@@ -40,7 +40,6 @@ def rle_decode(mask_rle, shape=(768, 768)):
 def masks_as_image(in_mask_list):
     # Take the individual ship masks and create a single mask array for all ships
     all_masks = np.zeros((768, 768), dtype = np.int16)
-    #if isinstance(in_mask_list, list):
     for mask in in_mask_list:
         if isinstance(mask, str):
             all_masks += rle_decode(mask)
