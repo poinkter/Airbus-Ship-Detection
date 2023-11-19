@@ -51,8 +51,10 @@ def Unet(input_img, n_filters = 16):
     u7 = concatenate([u7, c1])
     c7 = conv2d_block(u7, n_filters * 1, kernel_size = 3)
     
+    # Output Layer
     output = Conv2D(classes, (1, 1), activation='sigmoid')(c7)
 
+    # Generate Keras model
     model = Model(inputs=input, outputs=output)
 
     return model
