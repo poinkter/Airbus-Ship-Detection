@@ -9,7 +9,7 @@ from utils.utils import multi_rle_encode, get_image
 class CFG:
     img_size = (768, 768, 3)
     max_images = 10 # Max number of images to display
-    model_path = './models/model.h5'
+    model_path = './models/model_diceloss.h5'
     test_path = './ship_detection_data/test_v2'  # Change to your test images path
     save_path = './ship_detection_data/'
 
@@ -24,7 +24,6 @@ def load_model(model_path):
 def display_images(original_images, predicted_images):
     """
     Display original images and predicted masks by the model side by side.
-
     """
 
     num_images = min(len(original_images), len(predicted_images), CFG.max_images)
@@ -79,6 +78,7 @@ def predict_masks(display_images=True):
 
 def main():
     result_df = predict_masks(display_images=False)
+    # Save the results
     result_df.to_csv(CFG.save_path + 'results.csv')
 
 if __name__ == "__main__":
