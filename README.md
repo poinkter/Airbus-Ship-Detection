@@ -48,7 +48,7 @@ For more details, please visit the [competition page](https://www.kaggle.com/c/a
 
 3. Download the dataset from the [Kaggle competition page](https://www.kaggle.com/c/airbus-ship-detection) and place it in the `ship_detection_data/` directory.
 
-4. Run the `model_train.py` for training the model. Run the `model_inference.py` to evaluate the model on the test dataset.
+4. Run the `model_train.py` for training the model. Run the `model_inference.py` to evaluate the model on the test images.
 
 ## Model Architecture
 
