@@ -1,5 +1,17 @@
 # Airbus Ship Detection Challenge
 
+## Table of Contents
+
+1. [Overview](#overview)
+2. [Challenge Description](#challenge-description)
+3. [Repository Structure](#repository-structure)
+4. [Usage](#usage)
+5. [Model Architecture](#model-architecture)
+6. [Model Training and Evaluation](#model-training-and-evaluation)
+   1. [Training](#training)
+   2. [Evaluation](#evaluation)
+7. [Deprecated Model Summary](#deprecated-model-summary)
+
 ## Overview
 
 This repository contains my solutions and insights for the [Airbus Ship Detection Challenge](https://www.kaggle.com/c/airbus-ship-detection) hosted on Kaggle. The challenge focuses on developing algorithms to detect and classify ships in satellite images provided by Airbus.
@@ -73,4 +85,27 @@ The model's flexibility is enhanced through the adjustable parameter `n_filters`
 
 The deprecated model summary shown below (number of layers is deprecated for the purpose of showing the image):![Example Image](images/model_summary_deprecated.png)
 
+## Model Training and Evaluation
 
+### Training
+
+The U-Net model was trained using the Dice Loss (Diceloss) as the loss function. The training process involved optimizing the model parameters to minimize this loss, ultimately enhancing its ability to accurately segment ships in satellite images. Due to the computational intensity of training, the model was not trained locally on my computer, but instead on a machine with sufficient resources.
+
+### Evaluation
+
+The model's performance can be assessed using the provided evaluation script. Here's an overview of the evaluation process:
+
+1. The trained model is loaded from the saved file (`model_diceloss.h5`).
+2. Sample images from the test dataset (`./ship_detection_data/test_v2`) are loaded for inference.
+3. The model predicts segmentation masks for the test images.
+4. Optionally, the original images and predicted masks can be displayed side by side for visual inspection (set `display_images=True` in the `predict_masks` function).
+5. The predicted masks are converted to Run-Length Encoding (RLE) format.
+6. The results are saved in a CSV file (`submission.csv`), located in the specified save path (`./ship_detection_data/`).
+
+Feel free to run the evaluation script locally to assess the model's performance and visualize the predictions.
+
+Ensure that the necessary dependencies are installed, as listed in the `requirements.txt` file.
+
+**Note:** Make sure to replace placeholders such as `./ship_detection_data/` with the actual paths relevant to your project.
+
+For detailed visualizations, refer to the `display_images` and `predict_masks` functions in the evaluation script.
