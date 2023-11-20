@@ -10,7 +10,6 @@
 6. [Model Training and Evaluation](#model-training-and-evaluation)
    1. [Training](#training)
    2. [Evaluation](#evaluation)
-7. [Deprecated Model Summary](#deprecated-model-summary)
 
 ## Overview
 
