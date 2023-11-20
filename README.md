@@ -37,7 +37,7 @@ For more details, please visit the [competition page](https://www.kaggle.com/c/a
 1. Clone this repository:
 
    ```bash
-   git clone https://github.com/yourusername/airbus-ship-detection.git
+   git clone https://github.com/poinkter/Airbus-Ship-Detection.git
    ```
 
 2. Set up the environment:
