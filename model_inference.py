@@ -60,26 +60,27 @@ def predict_masks(display_images=True):
     # Perform inference
     predictions = model.predict(sample_images)
 
+    # Show predicted masks
     if display_images:
         display_images(sample_images, predictions)
 
     # Convert the predicted images to RLE encoding
-    out_pred_rows = []
-    for img in sample_images:
-        encodings = multi_rle_encode(predictions)
-        # Add an entry with np.NaN if there is no ship detected and 
-        out_pred_rows.append([{'ImageId': img, 'EncodedPixels': encoding} 
-                              if encodings 
-                              else {'ImageId': img, 'EncodedPixels': np.NaN} 
-                              for encoding in encodings])
+    prediction_rows = []
+    for prediction, img_path in zip(predictions, os.listdir(CFG.test_path)):
+        encodings = multi_rle_encode(prediction)
+        # Add an entry with np.NaN if there is no ship detected
+        prediction_rows.append([{'ImageId': img_path, 'EncodedPixels': encoding} 
+                                if encodings
+                                else {'ImageId': img_path, 'EncodedPixels': np.NaN} 
+                                for encoding in encodings])
     
-    return pd.DataFrame(out_pred_rows)
+    return pd.DataFrame(prediction_rows)
 
 
 def main():
-    result_df = predict_masks(display_images=False)
+    submission_df = predict_masks(display_images=False)
     # Save the results
-    result_df.to_csv(CFG.save_path + 'results.csv')
+    submission_df.to_csv(CFG.save_path + 'submission.csv', index=False)
 
 if __name__ == "__main__":
     main()
