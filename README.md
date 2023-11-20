@@ -1,7 +1,5 @@
 # Airbus Ship Detection Challenge
 
-![Airbus Ship Detection]
-
 ## Overview
 
 This repository contains my solutions and insights for the [Airbus Ship Detection Challenge](https://www.kaggle.com/c/airbus-ship-detection) hosted on Kaggle. The challenge focuses on developing algorithms to detect and classify ships in satellite images provided by Airbus.
@@ -45,40 +43,30 @@ For more details, please visit the [competition page](https://www.kaggle.com/c/a
 
 The implemented model follows a modified U-Net architecture, a popular choice for semantic segmentation tasks. The architecture consists of a contracting path, a U-Net bottom, and an expansive path, designed to capture both high-level context and precise spatial information.
 
-### Contracting Path
+- Contracting Path
 
-- Begins with an input layer
-- Sequence of convolutional blocks, each with:
-  - Two convolutional layers with ReLU activation
-  - Max-pooling layers (2x2) after each convolutional block to reduce spatial dimensions
+  - Begins with an input layer
+  - Sequence of convolutional blocks, each with:
+    - Two convolutional layers with ReLU activation
+    - Max-pooling layers (2x2) after each convolutional block to reduce spatial dimensions
 
-⋯
+- U-Net Bottom
 
-### U-Net Bottom
+  - Acts as a bottleneck
+  - Contains a convolutional block with increased filter size to retain rich feature information
 
-⋯
+- Expansive Path
 
-- Acts as a bottleneck
-- Contains a convolutional block with increased filter size to retain rich feature information
+  - Consists of transposed convolutions (Conv2DTranspose) to upsample feature maps
+  - Utilizes skip connections by concatenating feature maps from the contracting path
+  - Followed by convolutional blocks similar to those in the contracting path after each upsampling step
 
-⋯
+- Output Layer
 
-### Expansive Path
+  - Final layer is a 1x1 convolutional layer with sigmoid activation
+  - Produces a binary segmentation mask, representing the predicted probability of pixels belonging to the target class (e.g., ship) in the input image.
 
-⋯
-
-- Consists of transposed convolutions (Conv2DTranspose) to upsample feature maps
-- Utilizes skip connections by concatenating feature maps from the contracting path
-- Followed by convolutional blocks similar to those in the contracting path after each upsampling step
-
-⋯
-
-### Output Layer
-
-- Final layer is a 1x1 convolutional layer with sigmoid activation
-- Produces a binary segmentation mask, representing the predicted probability of pixels belonging to the target class (e.g., ship) in the input image.
-
-### Customization
+#### Customization
 
 The model's flexibility is enhanced through the adjustable parameter `n_filters`, allowing users to control the number of filters in the convolutional and transposed convolutional layers.
 
