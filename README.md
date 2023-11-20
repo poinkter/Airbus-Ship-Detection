@@ -47,19 +47,41 @@ The implemented model follows a modified U-Net architecture, a popular choice fo
 
 ### Contracting Path
 
-The contracting path begins with an input layer followed by a sequence of convolutional blocks, each composed of two convolutional layers with rectified linear unit (ReLU) activation. Max-pooling layers with a kernel size of (2, 2) are applied after each convolutional block to reduce spatial dimensions.
+- Begins with an input layer
+- Sequence of convolutional blocks, each with:
+  - Two convolutional layers with ReLU activation
+  - Max-pooling layers (2x2) after each convolutional block to reduce spatial dimensions
+
+⋯
 
 ### U-Net Bottom
 
-The U-Net bottom acts as a bottleneck, containing a convolutional block with increased filter size to retain rich feature information. This central block is crucial for maintaining context during the segmentation process.
+⋯
+
+- Acts as a bottleneck
+- Contains a convolutional block with increased filter size to retain rich feature information
+
+⋯
 
 ### Expansive Path
 
-The expansive path consists of transposed convolutions (Conv2DTranspose) to upsample the feature maps. Skip connections, concatenating feature maps from the contracting path, are employed to recover spatial resolution and enhance segmentation accuracy. Each upsampling step is followed by a convolutional block similar to those in the contracting path.
+⋯
+
+- Consists of transposed convolutions (Conv2DTranspose) to upsample feature maps
+- Utilizes skip connections by concatenating feature maps from the contracting path
+- Followed by convolutional blocks similar to those in the contracting path after each upsampling step
+
+⋯
 
 ### Output Layer
 
-The final layer is a 1x1 convolutional layer with a sigmoid activation function, producing a binary segmentation mask. The output represents the predicted probability of a pixel belonging to the target class (e.g., ship) in the input image.
+- Final layer is a 1x1 convolutional layer with sigmoid activation
+- Produces a binary segmentation mask, representing the predicted probability of pixels belonging to the target class (e.g., ship) in the input image.
+
+### Customization
+
+The model's flexibility is enhanced through the adjustable parameter `n_filters`, allowing users to control the number of filters in the convolutional and transposed convolutional layers.
+
 
 The deprecated model summary shown below (number of layers is deprecated for the purpose of showing the image):
 
