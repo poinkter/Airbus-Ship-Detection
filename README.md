@@ -71,5 +71,6 @@ The implemented model follows a modified U-Net architecture, a popular choice fo
 The model's flexibility is enhanced through the adjustable parameter `n_filters`, allowing users to control the number of filters in the convolutional and transposed convolutional layers.
 
 
-The deprecated model summary shown below (number of layers is deprecated for the purpose of showing the image):
+The deprecated model summary shown below (number of layers is deprecated for the purpose of showing the image):![Example Image](images/model_summary_deprecated.png)
+
 
